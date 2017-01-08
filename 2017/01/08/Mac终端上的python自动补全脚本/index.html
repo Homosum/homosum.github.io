@@ -12,10 +12,7 @@
     
         <meta name="description" content="学习python时经常需要在Mac终端下实时运行python，习惯了PyCharm的自动补全，在终端上写python一个个字母敲很是折磨，如是找到了一个自动补全的方法。在site-packages中添加一个tab模块，每次引入即可。
 
-找到你的site-packages位置
-
-
-import sys">
+找到你的site-packages位置&amp;gt;&amp;gt;&amp;gt; ">
     
 
     <!--Author-->
@@ -160,15 +157,9 @@ import sys">
             <!-- Content -->
             <p>学习python时经常需要在Mac终端下实时运行python，习惯了PyCharm的自动补全，在终端上写python一个个字母敲很是折磨，如是找到了一个自动补全的方法。<br>在site-packages中添加一个tab模块，每次引入即可。</p>
 <ul>
-<li><strong>找到你的site-packages位置</strong><blockquote>
-<blockquote>
-<blockquote>
-<p>import sys, pprint<br>pprint.pprint(sys.path)<br>[‘’,<br>‘/Library/Python/2.7/site-packages/Django-1.10.6-py2.7.egg’,<br>这里’/Library/Python/2.7/site-packages’就是模块包位置</p>
-</blockquote>
-</blockquote>
-</blockquote>
-</li>
-<li><strong>创建tab.py模块</strong><br>touch /Library/Python/2.7/site-packages/tab.py<br>vi /Library/Python/2.7/site-packages/tab.py</li>
+<li><strong>找到你的site-packages位置</strong><br><code>&gt;&gt;&gt; import sys, pprint</code><br><code>&gt;&gt;&gt; pprint.pprint(sys.path)</code><br><code>[&#39;&#39;,
+&#39;/Library/Python/2.7/site-packages/Django-1.10.6-py2.7.egg&#39;,</code><br>这里’/Library/Python/2.7/site-packages’就是模块包位置</li>
+<li><strong>创建tab.py模块</strong><br><code>touch /Library/Python/2.7/site-packages/tab.py</code><br><code>vi /Library/Python/2.7/site-packages/tab.py</code></li>
 <li><strong>写入tab.py代码</strong></li>
 </ul>
 <p>#!/usr/bin/python<br>import readline,rlcompleter</p>
