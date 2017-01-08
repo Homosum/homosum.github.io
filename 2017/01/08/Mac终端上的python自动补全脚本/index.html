@@ -10,6 +10,13 @@
 
     <!--Description-->
     
+        <meta name="description" content="学习python时经常需要在Mac终端下实时运行python，习惯了PyCharm的自动补全，在终端上写python一个个字母敲很是折磨，如是找到了一个自动补全的方法。在site-packages中添加一个tab模块，每次引入即可。
+
+找到你的site-packages位置
+
+
+import sys">
+    
 
     <!--Author-->
     
@@ -17,6 +24,8 @@
     
 
     <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Mac终端上的python自动补全脚本"/>
     
 
     <!--Open Graph Site Name-->
@@ -29,7 +38,7 @@
 
     <!-- Title -->
     
-    <title>归档：2016/9 - HOMOSUM HOUSH</title>
+    <title>Mac终端上的python自动补全脚本 - HOMOSUM HOUSH</title>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/reset.css">
@@ -119,37 +128,79 @@
 </header><!-- end header -->
 
 <!-- Main Content -->
-
-
 <section class="main clearfix">
-    <section class="wrapper">
-        <div class="content archives">
+
+    <section class="top" style="background: url('/img/welcome1.jpg');">
+        <div class="wrapper content_header clearfix">
             
-            <ul class="archive-list">
-                
-                    <li>
-    <a href="/2017/01/08/Mac终端上的python自动补全脚本/">Mac终端上的python自动补全脚本</a>
+
+<div class="work_nav">
+
+    <ul class="btn clearfix">
+        
+        <li><a class="previous disabled"></a></li>
+        
+        <li><a href="/" class="grid" data-title="Portfolio"></a></li>
+        
+        <li><a href="/2016/10/25/pianyuyiyan/" class="next" data-title="偏隅呓言"></a></li>
+        
+    </ul>
+
+</div><!-- end work_nav -->
+            <h1 class="title">Mac终端上的python自动补全脚本</h1>
+        </div>
+    </section><!-- end top -->
+
+    <section class="wrapper">
+        <div class="content">
+
+            <!-- Gallery -->
+            
+
+            <!-- Content -->
+            <p>学习python时经常需要在Mac终端下实时运行python，习惯了PyCharm的自动补全，在终端上写python一个个字母敲很是折磨，如是找到了一个自动补全的方法。<br>在site-packages中添加一个tab模块，每次引入即可。</p>
+<ul>
+<li><strong>找到你的site-packages位置</strong><blockquote>
+<blockquote>
+<blockquote>
+<p>import sys, pprint<br>pprint.pprint(sys.path)<br>[‘’,<br>‘/Library/Python/2.7/site-packages/Django-1.10.6-py2.7.egg’,<br>这里’/Library/Python/2.7/site-packages’就是模块包位置</p>
+</blockquote>
+</blockquote>
+</blockquote>
 </li>
+<li><strong>创建tab.py模块</strong><br>touch /Library/Python/2.7/site-packages/tab.py<br>vi /Library/Python/2.7/site-packages/tab.py</li>
+<li><strong>写入tab.py代码</strong></li>
+</ul>
+<p>#!/usr/bin/python<br>import readline,rlcompleter</p>
+<p>class TabCompleter(rlcompleter.Completer):<br>“””Completer that supports indenting”””<br>def complete(self, text, state):<br>if not text:<br>return (‘    ‘, None)[state]<br>else:<br>return rlcompleter.Completer.complete(self, text, state)</p>
+<p>readline.set_completer(TabCompleter().complete)</p>
+<p>if ‘libedit’ in readline.__doc__:<br>readline.parse_and_bind(“bind -e”)<br>readline.parse_and_bind(“bind ‘\t’ rl_complete”)<br>else:<br>readline.parse_and_bind(“tab: complete”)</p>
+<p>import os<br>histfile = os.path.join(os.environ[“HOME”], “.pyhist”)<br>try:<br>readline.read_history_file(histfile)<br>except IOError:<br>pass<br>import atexit<br>atexit.register(readline.write_history_file, histfile)<br>del histfile</p>
+<ul>
+<li><strong>终端效果显示</strong><br><code>&gt;&gt;&gt; import tab, copy</code><br><code>&gt;&gt;&gt; copy.      ###按下Tab两次之后显示如下</code></li>
+</ul>
+<p><img src="/img/pythonaot.png" alt="效果图.png"></p>
+
+
+            <!-- Tags -->
+            
+
+
+<div class="tags">
+    
+</div>
+
+
+
+            <!-- Comments -->
+            <div>
                 
-                    <li>
-    <a href="/2016/10/25/pianyuyiyan/">偏隅呓言</a>
-</li>
-                
-                    <li>
-    <a href="/2016/09/07/saysomething/">Say Someting</a>
-</li>
-                
-                    <li>
-    <a href="/2016/09/04/welcome/">Welcome To Homosum's House</a>
-</li>
-                
-            </ul>
+
+
+            </div>
         </div><!-- end content -->
     </section>
 </section><!-- end main -->
-
-
-
 
 <!-- After footer scripts -->
 
