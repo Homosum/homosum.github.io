@@ -10,8 +10,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="在iOS中图片占用内存的大小等于图片的尺寸x4，每个像素使用4个字节保存一个点，一个2000＊2000的图片加载到内存里会占用2000＊20004bitd的空间大小，如果imageView是个200200，套用这么大尺寸的图片，就很显得too expensive。这个时候就要考虑压缩了。
-图片的压缩">
+        <meta name="description" content="下午两点四十七。　东莞的天终算也凉了起来，外面风有点大，身上一件短袖，套着“比我年龄还大”的老爸的格子衬衫，还是有点不抗冷，凉风嗖嗖地从袖子口往上涌。　今天早上六点半起来，结果起来后又困的要死，一点没学进去，算算又是荒芜了大半天。　早晨打开手机浏览器，界面是感恩节的主题图片，当时没注意。中午吃完饭，">
     
 
     <!--Author-->
@@ -21,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="图片内存优化之调整压缩"/>
+        <meta property="og:title" content="下午两点四十七"/>
     
 
     <!--Open Graph Site Name-->
@@ -34,7 +33,7 @@
 
     <!-- Title -->
     
-    <title>图片内存优化之调整压缩 - HOMOSUM HOUSH</title>
+    <title>下午两点四十七 - HOMOSUM HOUSH</title>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/reset.css">
@@ -121,16 +120,16 @@
 
     <ul class="btn clearfix">
         
-        <li><a href="/2016/10/25/pianyuyiyan/" class="previous" data-title="偏隅呓言"></a></li>
+        <li><a href="/2016/01/08/Mac终端上的python自动补全脚本/" class="previous" data-title="Mac终端上的python自动补全脚本"></a></li>
         
         <li><a href="/" class="grid" data-title="Portfolio"></a></li>
         
-        <li><a href="/2016/02/16/使用终端进行友盟错误分析/" class="next" data-title="使用终端进行友盟错误分析"></a></li>
+        <li><a href="/2015/09/07/saysomething/" class="next" data-title="Say Someting"></a></li>
         
     </ul>
 
 </div><!-- end work_nav -->
-            <h1 class="title">图片内存优化之调整压缩</h1>
+            <h1 class="title">下午两点四十七</h1>
         </div>
     </section><!-- end top -->
 
@@ -141,35 +140,10 @@
             
 
             <!-- Content -->
-            <p>在iOS中图片占用内存的大小等于图片的尺寸x4，每个像素使用4个字节保存一个点，一个2000＊2000的图片加载到内存里会占用2000＊2000<em>4bitd的空间大小，如果imageView是个200</em>200，套用这么大尺寸的图片，就很显得too expensive。<br>这个时候就要考虑压缩了。</p>
-<p>图片的压缩其实是俩概念，<br>1、是 “压” 文件体积变小，但是像素数不变，长宽尺寸不变，那么质量可能下降，<br>2、是 “缩” 文件的尺寸变小，也就是像素数减少。长宽尺寸变小，文件体积同样会减小。</p>
-<p>这个 UIImageJPEGRepresentation(image, 0.0)，是1的功能。</p>
-<p>这个 [sourceImage drawInRect:CGRectMake(0,0,targetWidth, targetHeight)] 是2的功能。<br>    //</p>
-<pre><code>-(UIImage *) imageCompressForWidth:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth
+            <p><font size="4" face="微软雅黑">　下午两点四十七。<br><br>　东莞的天终算也凉了起来，外面风有点大，身上一件短袖，套着“比我年龄还大”的老爸的格子衬衫，还是有点不抗冷，凉风嗖嗖地从袖子口往上涌。<br><br>　今天早上六点半起来，结果起来后又困的要死，一点没学进去，算算又是荒芜了大半天。<br><br>　早晨打开手机浏览器，界面是感恩节的主题图片，当时没注意。中午吃完饭，躺在沙发上小憩，才突然想到，原来今天是感恩节的，应该发个短信给老妈和叔叔。可拿起手机，打开微信，准备发时，却不知该如何开口，对着空对话框纠结了半天，想想只是个洋人节日，还是算了，没发。<br><br>　用手机搜索“丁客”，才发现这个词正确的写法应该是“丁克”，自己一直记错了。还发现原来丁到四十岁，忍不住生了的，叫作“白丁”。<br><br>　电水壶正在烧水，发出嗡嗡的叫声。茶几上堆着乱七八糟的书籍、还可以喝两个星期的咖啡和一瓶老姐昨天寄回的未来得及拆封的洗发水。<br><br>　老爸中午把饭弄好，就出去了不知道要什么时候回来。<br><br>　唉，，果真是个木讷的理科生。 </font><br><br></p>
+<p><img src="/img/麦田.jpg" alt="麦田"></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=2532353&auto=1&height=66"><br></iframe> 
 
-{
-
-        CGSize imageSize = sourceImage.size;
-
-        CGFloat width = imageSize.width;
-
-        CGFloat height = imageSize.height;
-
-        CGFloat targetWidth = defineWidth;
-
-        CGFloat targetHeight = (targetWidth / width) * height;
-
-        UIGraphicsBeginImageContext(CGSizeMake(targetWidth, targetHeight));
-
-        [sourceImage drawInRect:CGRectMake(0,0,targetWidth, targetHeight)];
-
-        UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-
-        UIGraphicsEndImageContext();
-
-        return newImage;
-}
-</code></pre>
 
             <!-- Tags -->
             
