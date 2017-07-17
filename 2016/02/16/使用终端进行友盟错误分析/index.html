@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+    <!--Description-->
+    
+        <meta name="description" content="打开Xcode打包界面Xcode -&amp;gt; Window -&amp;gt; Organizer
+找到对应包并找到分析文件ipa -&amp;gt; 右键 -&amp;gt; showInFinder
+
+
+里面有个dSYMs文件夹，里面即使需要用到的dSYM文件
+
+打开终端执行以下语句dwarfdump --arch=a">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="WTC">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="使用终端进行友盟错误分析"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="HOMOSUM HOUSH"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined"/>
+    
+
+    <!-- Title -->
+    
+    <title>使用终端进行友盟错误分析 - HOMOSUM HOUSH</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+<!-- Menu -->
+<!-- Navigation -->
+<header>
+    <div class="logo">
+        <a href="/">HOMOSUM HOUSH</a>
+    </div><!-- end logo -->
+
+    <div id="menu_icon"></div>
+    <nav>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/technology">Technology</a>
+            </li>
+            
+            <li>
+                <a href="/peculiarity">Peculiarity</a>
+            </li>
+            
+            <li>
+                <a href="/about">About</a>
+            </li>
+            
+        </ul>
+    </nav><!-- end navigation menu -->
+
+    <div class="footer clearfix">
+        <ul class="social clearfix">
+            
+            
+            
+            
+            
+            
+        </ul><!-- end social -->
+
+        <div class="rights">
+            <p></p>
+            <p>Tech To Art,</p>
+            <p>To Make The World A Little Better.</p>
+            <p>Email: <a href="mailto:homosum@aliyun.com">homosum@aliyun.com</a></p>
+        </div><!-- end rights -->
+    </div ><!-- end footer -->
+</header><!-- end header -->
+
+<!-- Main Content -->
+<section class="main clearfix">
+
+    <section class="top" style="background: url('/img/saysomething1.jpg');">
+        <div class="wrapper content_header clearfix">
+            
+
+<div class="work_nav">
+
+    <ul class="btn clearfix">
+        
+        <li><a href="/2016/02/16/下午两点四十七/" class="previous" data-title="下午两点四十七"></a></li>
+        
+        <li><a href="/" class="grid" data-title="Portfolio"></a></li>
+        
+        <li><a href="/2016/01/16/Git指令记录-版本控制和多人开发/" class="next" data-title="Git指令记录(版本控制和多人开发..."></a></li>
+        
+    </ul>
+
+</div><!-- end work_nav -->
+            <h1 class="title">使用终端进行友盟错误分析</h1>
+        </div>
+    </section><!-- end top -->
+
+    <section class="wrapper">
+        <div class="content">
+
+            <!-- Gallery -->
+            
+
+            <!-- Content -->
+            <ul>
+<li>打开Xcode打包界面<br>Xcode -&gt; Window -&gt; Organizer</li>
+<li>找到对应包并找到分析文件<br>ipa -&gt; 右键 -&gt; showInFinder</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2284259-fd72f25b8633e818.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="CBF9AD14-36E1-417D-A5C0-D8515DBD4BA1.png"></p>
+<p>里面有个dSYMs文件夹，里面即使需要用到的dSYM文件</p>
+<ul>
+<li>打开终端执行以下语句<br><code>dwarfdump --arch=arm64 --lookup 0x100047880 &quot;$dSYMPath&quot;</code></li>
+<li>其中<code>0x100047880</code>在友盟的错误分析页使用蓝绿色标出的地址 码 “$dSYMPath” 代表dSYM文件路径，删除掉将前面的dSYM文件拖进终端即可。</li>
+</ul>
+
+
+            <!-- Tags -->
+            
+
+
+<div class="tags">
+    
+</div>
+
+
+
+            <!-- Comments -->
+            <div>
+                
+
+
+            </div>
+        </div><!-- end content -->
+    </section>
+</section><!-- end main -->
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="/js/jquery.js"></script>
+
+<!-- Custom Code -->
+<script src="/js/main.js"></script>
+
+<!-- Gallery -->
+
+
+<!-- Disqus Comments -->
+
+
+</body>
+
+</html>

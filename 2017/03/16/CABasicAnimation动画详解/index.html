@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+    <!--Description-->
+    
+        <meta name="description" content="该篇文章CABasicAnimation动画类的一些类型展示和使用说明。Talk is cheap.Show the code.
+震动效果-(void)shakeAnimationForView:(UIView *) view
+
+{
+
+    // 获取到当前的View
+
+    CALayer *">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="WTC">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="CABasicAnimation动画详解"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="HOMOSUM HOUSH"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined"/>
+    
+
+    <!-- Title -->
+    
+    <title>CABasicAnimation动画详解 - HOMOSUM HOUSH</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+<!-- Menu -->
+<!-- Navigation -->
+<header>
+    <div class="logo">
+        <a href="/">HOMOSUM HOUSH</a>
+    </div><!-- end logo -->
+
+    <div id="menu_icon"></div>
+    <nav>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/technology">Technology</a>
+            </li>
+            
+            <li>
+                <a href="/peculiarity">Peculiarity</a>
+            </li>
+            
+            <li>
+                <a href="/about">About</a>
+            </li>
+            
+        </ul>
+    </nav><!-- end navigation menu -->
+
+    <div class="footer clearfix">
+        <ul class="social clearfix">
+            
+            
+            
+            
+            
+            
+        </ul><!-- end social -->
+
+        <div class="rights">
+            <p></p>
+            <p>Tech To Art,</p>
+            <p>To Make The World A Little Better.</p>
+            <p>Email: <a href="mailto:homosum@aliyun.com">homosum@aliyun.com</a></p>
+        </div><!-- end rights -->
+    </div ><!-- end footer -->
+</header><!-- end header -->
+
+<!-- Main Content -->
+<section class="main clearfix">
+
+    <section class="top" style="background: url('/img/saysomething1.jpg');">
+        <div class="wrapper content_header clearfix">
+            
+
+<div class="work_nav">
+
+    <ul class="btn clearfix">
+        
+        <li><a href="/2017/03/19/记一次帮学妹写简单csv脚本/" class="previous" data-title="记一次帮学妹写简单csv脚本"></a></li>
+        
+        <li><a href="/" class="grid" data-title="Portfolio"></a></li>
+        
+        <li><a href="/2017/01/16/Django学习-一/" class="next" data-title="Django学习(一)"></a></li>
+        
+    </ul>
+
+</div><!-- end work_nav -->
+            <h1 class="title">CABasicAnimation动画详解</h1>
+        </div>
+    </section><!-- end top -->
+
+    <section class="wrapper">
+        <div class="content">
+
+            <!-- Gallery -->
+            
+
+            <!-- Content -->
+            <p>该篇文章CABasicAnimation动画类的一些类型展示和使用说明。Talk is cheap.Show the code.</p>
+<h3 id="震动效果"><a href="#震动效果" class="headerlink" title="震动效果"></a>震动效果</h3><pre><code>-(void)shakeAnimationForView:(UIView *) view
+
+{
+
+    // 获取到当前的View
+
+    CALayer *viewLayer = view.layer;
+
+    // 获取当前View的位置
+
+    CGPoint position = viewLayer.position;
+
+    // 移动的两个终点位置
+
+    CGPoint x = CGPointMake(position.x + 10, position.y);
+
+    CGPoint y = CGPointMake(position.x - 10, position.y);
+
+    // 设置动画
+
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@&quot;position&quot;];
+
+    // 设置运动形式
+
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+
+    // 设置开始位置
+
+    [animation setFromValue:[NSValue valueWithCGPoint:x]];
+
+    // 设置结束位置
+
+    [animation setToValue:[NSValue valueWithCGPoint:y]];
+
+    // 设置自动反转
+
+    [animation setAutoreverses:YES];
+
+    // 设置时间
+
+    [animation setDuration:.06];
+
+    // 设置次数
+
+    [animation setRepeatCount:5];
+
+    // 添加上动画
+
+    [viewLayer addAnimation:animation forKey:nil];
+
+}
+</code></pre><h3 id="透明效果"><a href="#透明效果" class="headerlink" title="透明效果"></a>透明效果</h3><pre><code>-(void)opacityForView:(UIView*)view
+{
+    CALayer *viewLayer = view.layer;
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@&quot;opacity&quot;];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    animation.fromValue=@0;
+    animation.toValue=@1;
+    [animation setAutoreverses:YES];
+    [animation setDuration:1.0];
+    [animation setRepeatCount:3];
+    [viewLayer addAnimation:animation forKey:nil];
+}
+</code></pre><h3 id="翻转效果"><a href="#翻转效果" class="headerlink" title="翻转效果"></a>翻转效果</h3><pre><code>-(void)widthTranfromForView:(UIView*)view
+{
+    CALayer *viewLayer = view.layer;
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@&quot;transform.scale.x&quot;];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    animation.fromValue=@0;
+    animation.toValue=@1;
+    [animation setAutoreverses:YES];
+    [animation setDuration:1.0];
+    [animation setRepeatCount:3];
+    [viewLayer addAnimation:animation forKey:nil];
+}
+</code></pre><h3 id="旋转效果"><a href="#旋转效果" class="headerlink" title="旋转效果"></a>旋转效果</h3><pre><code>-(void)rotateForView:(UIView*)view
+{
+    CALayer *viewLayer = view.layer;
+    CABasicAnimation*animation=[CABasicAnimation animationWithKeyPath:@&quot;transform.rotation.z&quot;];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    animation.fromValue=@0;
+    animation.toValue=@(M_PI*2.0);
+    animation.cumulative = YES;
+    [animation setDuration:1.0];
+    [animation setRepeatCount:1];
+    [viewLayer addAnimation:animation forKey:nil];
+}
+</code></pre><h3 id="大小变化效果"><a href="#大小变化效果" class="headerlink" title="大小变化效果"></a>大小变化效果</h3><pre><code>-(void)scaleForView:(UIView*)view
+{
+    CALayer *viewLayer = view.layer;
+    CABasicAnimation*animation=[CABasicAnimation animationWithKeyPath:@&quot;transform.scale&quot;];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionDefault]];
+    animation.fromValue=@1;
+    animation.toValue=@2;
+    //        [animation setAutoreverses:YES];
+    animation.removedOnCompletion = NO;
+    animation.fillMode = kCAFillModeForwards;
+    [animation setDuration:1.0];
+    [animation setRepeatCount:1];
+    [viewLayer addAnimation:animation forKey:nil];
+}
+</code></pre><p>还有许多动画效果，这里就不一一例举了，CABasicAnimation的key如下，有兴趣的话，可以用不同的key试试</p>
+<pre><code>animationWithKeyPath的值：
+
+transform.scale = 比例轉換
+
+transform.scale.x = 闊的比例轉換
+
+transform.scale.y = 高的比例轉換
+
+transform.rotation.z = 平面圖的旋轉
+
+opacity = 透明度
+
+margin
+
+zPosition
+
+backgroundColor    背景颜色
+
+cornerRadius    圆角
+
+borderWidth
+
+bounds
+
+contents
+
+contentsRect
+
+cornerRadius
+
+frame
+
+hidden
+
+mask
+
+masksToBounds
+
+opacity
+
+position
+
+shadowColor
+
+shadowOffset
+
+shadowOpacity
+
+shadowRadius
+</code></pre>
+
+            <!-- Tags -->
+            
+
+
+<div class="tags">
+    
+</div>
+
+
+
+            <!-- Comments -->
+            <div>
+                
+
+
+            </div>
+        </div><!-- end content -->
+    </section>
+</section><!-- end main -->
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="/js/jquery.js"></script>
+
+<!-- Custom Code -->
+<script src="/js/main.js"></script>
+
+<!-- Gallery -->
+
+
+<!-- Disqus Comments -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+    <!--Description-->
+    
+        <meta name="description" content="runtime：运行时机制，是一种在编译保持不确定状态，运行时再决定调用哪个函数的机制。
+将OC与C对比，区别于在编译的时候，C语言中调用未实现的函数会报错，而对于OC，只要函数声明过，有未现实在编译时都不会报错。
+在OC中，我们引用原生类时经常会需要给类额外添加属性的情况，有两种解决问题的办法。要">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="WTC">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Objective-C轻松给类添加属性"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="HOMOSUM HOUSH"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined"/>
+    
+
+    <!-- Title -->
+    
+    <title>Objective-C轻松给类添加属性 - HOMOSUM HOUSH</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+<!-- Menu -->
+<!-- Navigation -->
+<header>
+    <div class="logo">
+        <a href="/">HOMOSUM HOUSH</a>
+    </div><!-- end logo -->
+
+    <div id="menu_icon"></div>
+    <nav>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/technology">Technology</a>
+            </li>
+            
+            <li>
+                <a href="/peculiarity">Peculiarity</a>
+            </li>
+            
+            <li>
+                <a href="/about">About</a>
+            </li>
+            
+        </ul>
+    </nav><!-- end navigation menu -->
+
+    <div class="footer clearfix">
+        <ul class="social clearfix">
+            
+            
+            
+            
+            
+            
+        </ul><!-- end social -->
+
+        <div class="rights">
+            <p></p>
+            <p>Tech To Art,</p>
+            <p>To Make The World A Little Better.</p>
+            <p>Email: <a href="mailto:homosum@aliyun.com">homosum@aliyun.com</a></p>
+        </div><!-- end rights -->
+    </div ><!-- end footer -->
+</header><!-- end header -->
+
+<!-- Main Content -->
+<section class="main clearfix">
+
+    <section class="top" style="background: url('/img/saysomething1.jpg');">
+        <div class="wrapper content_header clearfix">
+            
+
+<div class="work_nav">
+
+    <ul class="btn clearfix">
+        
+        <li><a href="/2016/01/16/Git指令记录-版本控制和多人开发/" class="previous" data-title="Git指令记录(版本控制和多人开发)"></a></li>
+        
+        <li><a href="/" class="grid" data-title="Portfolio"></a></li>
+        
+        <li><a href="/2016/01/08/Mac终端上的python自动补全脚本/" class="next" data-title="Mac终端上的python自动补全..."></a></li>
+        
+    </ul>
+
+</div><!-- end work_nav -->
+            <h1 class="title">Objective-C轻松给类添加属性</h1>
+        </div>
+    </section><!-- end top -->
+
+    <section class="wrapper">
+        <div class="content">
+
+            <!-- Gallery -->
+            
+
+            <!-- Content -->
+            <p>runtime：运行时机制，是一种在编译保持不确定状态，运行时再决定调用哪个函数的机制。</p>
+<p>将OC与C对比，区别于在编译的时候，C语言中调用未实现的函数会报错，而对于OC，只要函数声明过，有未现实在编译时都不会报错。</p>
+<p>在OC中，我们引用原生类时经常会需要给类额外添加属性的情况，有两种解决问题的办法。要添加的属性比较多的话，我们可以自定义一个子类继承于OC原生的父类。但当我们只需要添加很少的属性或修改别人代码且不希望造成很大得改动时，建议使用runtime。</p>
+<p>一个通过runtime添加属性实际操作的例子。</p>
+<p><code>[skipButton addTarget:self action:@selector(skipAD:) forControlEvents:UIControlEventTouchUpInside];</code><br>skipButton是一个UIButton类，点击后可以直接跳过启动图。现在需要在启动图跳过之后对远程通知进行处理。<br><code>- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions</code><br>FinishLaunching函数的launchOptions字典里存储了远程通知的内容。<br>想要将通知内容带到<code>skipAD:</code>方法中，最方便的做法就是使用runtime（runtime添加属性的轻便和低耦性合非常适合代码修改和维护）。</p>
+<p>使用runtime方法需要<code>#import &lt;objc/runtime.h&gt;</code>，然后看这个“建立联系”的方法。<br>以下runtime中 <code>objc_setAssociatedObject</code>和<code>objc_getAssociatedObject</code>方法。<br><img src="/img/objc1.png" alt="objc_setAssociatedObjec.png"><br>用一个key和联系策略将需要关联的value和一个给定的object关联起来。<br>object:被关联（原始母对象）对象<br>key:关联钥匙<br>value：需要关联给被关联对象的对象（子属性）<br>policy：关联策略（子属性的前缀）</p>
+<p><img src="/img/objc2.png" alt="objc_AssociationPolicy.png"><br>使用的时候，先全局声明一个key:<br><code>static char buttonInfo;</code><br>通过key绑定对象<br><code>objc_setAssociatedObject(skipButton, &amp;buttonInfo, launchOptions, OBJC_ASSOCIATION_RETAIN_NONATOMIC);</code><br>获取对象<code>objc_getAssociatedObject</code>就比较简单了</p>
+<p><img src="/img/objc3.png" alt="objc_getAssociatedObject.png"><br>在<code>-(void)skipAD:(UIButton*)button</code>中取到<code>launchOptions</code><br><code>NSDictionary*launchOptions=objc_getAssociatedObject(button, &amp;buttonInfo);</code></p>
+
+
+            <!-- Tags -->
+            
+
+
+<div class="tags">
+    
+</div>
+
+
+
+            <!-- Comments -->
+            <div>
+                
+
+
+            </div>
+        </div><!-- end content -->
+    </section>
+</section><!-- end main -->
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="/js/jquery.js"></script>
+
+<!-- Custom Code -->
+<script src="/js/main.js"></script>
+
+<!-- Gallery -->
+
+
+<!-- Disqus Comments -->
+
+
+</body>
+
+</html>

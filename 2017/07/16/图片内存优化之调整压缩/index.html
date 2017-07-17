@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+    <!--Description-->
+    
+        <meta name="description" content="在iOS中图片占用内存的大小等于图片的尺寸x4，每个像素使用4个字节保存一个点，一个2000＊2000的图片加载到内存里会占用2000＊20004bitd的空间大小，如果imageView是个200200，套用这么大尺寸的图片，就很显得too expensive。这个时候就要考虑压缩了。
+图片的压缩">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="WTC">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="图片内存优化之调整压缩"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="HOMOSUM HOUSH"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined"/>
+    
+
+    <!-- Title -->
+    
+    <title>图片内存优化之调整压缩 - HOMOSUM HOUSH</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+<!-- Menu -->
+<!-- Navigation -->
+<header>
+    <div class="logo">
+        <a href="/">HOMOSUM HOUSH</a>
+    </div><!-- end logo -->
+
+    <div id="menu_icon"></div>
+    <nav>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/technology">Technology</a>
+            </li>
+            
+            <li>
+                <a href="/peculiarity">Peculiarity</a>
+            </li>
+            
+            <li>
+                <a href="/about">About</a>
+            </li>
+            
+        </ul>
+    </nav><!-- end navigation menu -->
+
+    <div class="footer clearfix">
+        <ul class="social clearfix">
+            
+            
+            
+            
+            
+            
+        </ul><!-- end social -->
+
+        <div class="rights">
+            <p></p>
+            <p>Tech To Art,</p>
+            <p>To Make The World A Little Better.</p>
+            <p>Email: <a href="mailto:homosum@aliyun.com">homosum@aliyun.com</a></p>
+        </div><!-- end rights -->
+    </div ><!-- end footer -->
+</header><!-- end header -->
+
+<!-- Main Content -->
+<section class="main clearfix">
+
+    <section class="top" style="background: url('/img/csv脚本1.jpeg');">
+        <div class="wrapper content_header clearfix">
+            
+
+<div class="work_nav">
+
+    <ul class="btn clearfix">
+        
+        <li><a href="/2017/07/16/Django学习-一/" class="previous" data-title="Django学习(一)"></a></li>
+        
+        <li><a href="/" class="grid" data-title="Portfolio"></a></li>
+        
+        <li><a href="/2017/07/16/CABasicAnimation动画详解/" class="next" data-title="CABasicAnimation动..."></a></li>
+        
+    </ul>
+
+</div><!-- end work_nav -->
+            <h1 class="title">图片内存优化之调整压缩</h1>
+        </div>
+    </section><!-- end top -->
+
+    <section class="wrapper">
+        <div class="content">
+
+            <!-- Gallery -->
+            
+
+            <!-- Content -->
+            <p>在iOS中图片占用内存的大小等于图片的尺寸x4，每个像素使用4个字节保存一个点，一个2000＊2000的图片加载到内存里会占用2000＊2000<em>4bitd的空间大小，如果imageView是个200</em>200，套用这么大尺寸的图片，就很显得too expensive。<br>这个时候就要考虑压缩了。</p>
+<p>图片的压缩其实是俩概念，<br>1、是 “压” 文件体积变小，但是像素数不变，长宽尺寸不变，那么质量可能下降，<br>2、是 “缩” 文件的尺寸变小，也就是像素数减少。长宽尺寸变小，文件体积同样会减小。</p>
+<p>这个 UIImageJPEGRepresentation(image, 0.0)，是1的功能。</p>
+<p>这个 [sourceImage drawInRect:CGRectMake(0,0,targetWidth, targetHeight)] 是2的功能。<br>    //</p>
+<pre><code>-(UIImage *) imageCompressForWidth:(UIImage *)sourceImage targetWidth:(CGFloat)defineWidth
+
+{
+
+        CGSize imageSize = sourceImage.size;
+
+        CGFloat width = imageSize.width;
+
+        CGFloat height = imageSize.height;
+
+        CGFloat targetWidth = defineWidth;
+
+        CGFloat targetHeight = (targetWidth / width) * height;
+
+        UIGraphicsBeginImageContext(CGSizeMake(targetWidth, targetHeight));
+
+        [sourceImage drawInRect:CGRectMake(0,0,targetWidth, targetHeight)];
+
+        UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
+
+        UIGraphicsEndImageContext();
+
+        return newImage;
+}
+</code></pre>
+
+            <!-- Tags -->
+            
+
+
+<div class="tags">
+    
+</div>
+
+
+
+            <!-- Comments -->
+            <div>
+                
+
+
+            </div>
+        </div><!-- end content -->
+    </section>
+</section><!-- end main -->
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="/js/jquery.js"></script>
+
+<!-- Custom Code -->
+<script src="/js/main.js"></script>
+
+<!-- Gallery -->
+
+
+<!-- Disqus Comments -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+    <!--Description-->
+    
+        <meta name="description" content="开始你的Djangodjango-admin startproject mysite  创建一个项目python manage.py runserver 开启服务器  在localhost:8000中python manage.py runserver 0.0.0.0:8000 自定义端口pytho">
+    
+
+    <!--Author-->
+    
+        <meta name="author" content="WTC">
+    
+
+    <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Django学习(一)"/>
+    
+
+    <!--Open Graph Site Name-->
+    <meta property="og:site_name" content="HOMOSUM HOUSH"/>
+
+    <!--Page Cover-->
+    
+        <meta property="og:image" content="undefined"/>
+    
+
+    <!-- Title -->
+    
+    <title>Django学习(一) - HOMOSUM HOUSH</title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- Gallery -->
+
+    <!-- Google Analytics -->
+    
+
+
+</head>
+
+<body>
+
+<!-- Menu -->
+<!-- Navigation -->
+<header>
+    <div class="logo">
+        <a href="/">HOMOSUM HOUSH</a>
+    </div><!-- end logo -->
+
+    <div id="menu_icon"></div>
+    <nav>
+        <ul>
+            
+            <li>
+                <a href="/">Home</a>
+            </li>
+            
+            <li>
+                <a href="/archives">Archives</a>
+            </li>
+            
+            <li>
+                <a href="/technology">Technology</a>
+            </li>
+            
+            <li>
+                <a href="/peculiarity">Peculiarity</a>
+            </li>
+            
+            <li>
+                <a href="/about">About</a>
+            </li>
+            
+        </ul>
+    </nav><!-- end navigation menu -->
+
+    <div class="footer clearfix">
+        <ul class="social clearfix">
+            
+            
+            
+            
+            
+            
+        </ul><!-- end social -->
+
+        <div class="rights">
+            <p></p>
+            <p>Tech To Art,</p>
+            <p>To Make The World A Little Better.</p>
+            <p>Email: <a href="mailto:homosum@aliyun.com">homosum@aliyun.com</a></p>
+        </div><!-- end rights -->
+    </div ><!-- end footer -->
+</header><!-- end header -->
+
+<!-- Main Content -->
+<section class="main clearfix">
+
+    <section class="top" style="background: url('/img/csv脚本1.jpeg');">
+        <div class="wrapper content_header clearfix">
+            
+
+<div class="work_nav">
+
+    <ul class="btn clearfix">
+        
+        <li><a href="/2017/07/16/Git指令记录-版本控制和多人开发/" class="previous" data-title="Git指令记录(版本控制和多人开发)"></a></li>
+        
+        <li><a href="/" class="grid" data-title="Portfolio"></a></li>
+        
+        <li><a href="/2017/07/16/图片内存优化之调整压缩/" class="next" data-title="图片内存优化之调整压缩"></a></li>
+        
+    </ul>
+
+</div><!-- end work_nav -->
+            <h1 class="title">Django学习(一)</h1>
+        </div>
+    </section><!-- end top -->
+
+    <section class="wrapper">
+        <div class="content">
+
+            <!-- Gallery -->
+            
+
+            <!-- Content -->
+            <h3 id="开始你的Django"><a href="#开始你的Django" class="headerlink" title="开始你的Django"></a><font color="#104B35">开始你的Django</font></h3><font color="#104B35">django-admin startproject mysite  创建一个项目<br><br>python manage.py runserver 开启服务器  在localhost:8000中<br><br>python manage.py runserver 0.0.0.0:8000 自定义端口<br><br>python manage.py startapp polls  创建项目内应用<br><br></font>
+
+<h3 id="在view-py应用中定义页面展示"><a href="#在view-py应用中定义页面展示" class="headerlink" title="在view.py应用中定义页面展示"></a><font color="#104B35">在view.py应用中定义页面展示</font></h3><pre><code>polls/views.py
+from django.http import HttpResponse
+
+def index(request):
+
+        return HttpResponse(&quot;Hello, world. You&apos;re at the polls index.&quot;)
+</code></pre><h3 id="在项目的url-py中添加应用的urls-py模块"><a href="#在项目的url-py中添加应用的urls-py模块" class="headerlink" title="在项目的url.py中添加应用的urls.py模块"></a><font color="#104B35">在项目的url.py中添加应用的urls.py模块</font></h3><pre><code>mysite/urls.py
+
+
+from django.conf.urls import include, url
+from django.contrib import admin
+
+urlpatterns = [
+       url(r&apos;^polls/&apos;, include(&apos;polls.urls&apos;)),
+        url(r&apos;^admin/&apos;, admin.site.urls),
+]
+</code></pre><p><code>python manage.py migrate  提交代码</code></p>
+<h3 id="在应用的model-py中给应用添加model"><a href="#在应用的model-py中给应用添加model" class="headerlink" title="在应用的model.py中给应用添加model"></a><font color="#104B35">在应用的model.py中给应用添加model</font></h3><pre><code>polls/models.py
+from django.db import models
+
+class Question(models.Model):
+        question_text = models.CharField(max_length=200)
+        pub_date = models.DateTimeField(&apos;date published&apos;)
+
+class Choice(models.Model):
+        question = models.ForeignKey(Question, on_delete=models.CASCADE)
+        choice_text = models.CharField(max_length=200)
+
+    votes = models.IntegerField(default=0)
+</code></pre><p><br><br>* foreignkey外键是一个模型关系，在question表中有了choice的列（属性）</p>
+<h3 id="将应用添加到项目中（通知项目该应用的存在）"><a href="#将应用添加到项目中（通知项目该应用的存在）" class="headerlink" title="将应用添加到项目中（通知项目该应用的存在）"></a><font color="#104B35">将应用添加到项目中（通知项目该应用的存在）</font></h3><pre><code>mysite/settings.py
+INSTALLED_APPS = [
+        &apos;polls.apps.PollsConfig&apos;,
+        &apos;django.contrib.admin&apos;,
+        &apos;django.contrib.auth&apos;,
+        &apos;django.contrib.contenttypes&apos;,
+        &apos;django.contrib.sessions&apos;,
+        &apos;django.contrib.messages&apos;,
+        &apos;django.contrib.staticfiles&apos;,
+
+]
+</code></pre><p><br><br>* 通知项目你对模型做了改变，并打算migrate这些改变</p>
+<p><code>$ python manage.py makemigrations polls</code></p>
+<h3 id="终端运行你的api"><a href="#终端运行你的api" class="headerlink" title="终端运行你的api"></a><font color="#104B35">终端运行你的api</font></h3><p><code>$ python manage.py shell</code></p>
+<pre><code>&gt;&gt;&gt; from polls.models importQuestion,Choice
+&gt;&gt;&gt; Question.objects.all()
+&gt;&gt;&gt; from django.utils importtimezone
+&gt;&gt;&gt; q =Question(question_text=&quot;What&apos;s new?&quot;,pub_date=timezone.now())
+&gt;&gt;&gt; q.save()
+&gt;&gt;&gt; q.id
+
+&gt;&gt;&gt; q.question_text
+
+    &quot;What&apos;s new?&quot;
+&gt;&gt;&gt; q.pub_date
+
+    datetime.datetime(2012, 2, 26, 13, 0, 0, 775217, tzinfo=&lt;UTC&gt;)
+&gt;&gt;&gt; q.question_text = &quot;What&apos;s up?&quot;
+
+&gt;&gt;&gt; q.save()
+&gt;&gt;&gt; Question.objects.all()
+
+    &lt;QuerySet [&lt;Question: Question object&gt;]&gt;
+</code></pre><h3 id="使在类字符串返回表示"><a href="#使在类字符串返回表示" class="headerlink" title="使在类字符串返回表示"></a><font color="#104B35">使在类字符串返回表示</font></h3><pre><code>polls/models.py
+from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
+
+@python_2_unicode_compatible  # only if you need to support Python 2
+class Question(models.Model):
+    # ...
+    def __str__(self):
+        return self.question_text
+
+@python_2_unicode_compatible  # only if you need to support Python 2
+class Choice(models.Model):
+    # ...
+    def __str__(self):
+
+        return self.choice_text
+
+&gt;&gt;&gt; from polls.models importQuestion,Choice
+&gt;&gt;&gt; Question.objects.all()
+
+    &lt;QuerySet [&lt;Question: What&apos;s up?&gt;]&gt;
+&gt;&gt;&gt; Question.objects.filter(id=1)
+    &lt;QuerySet [&lt;Question: What&apos;s up?&gt;]&gt;
+&gt;&gt;&gt; Question.objects.filter(question_text__startswith=&apos;What&apos;)
+
+    &lt;QuerySet [&lt;Question: What&apos;s up?&gt;]&gt;
+&gt;&gt;&gt; from django.utils importtimezone
+&gt;&gt;&gt; current_year =timezone.now().year
+&gt;&gt;&gt; Question.objects.get(pub_date__year=current_year)
+
+    &lt;Question: What&apos;s up?&gt;
+
+
+&gt;&gt;&gt; Question.objects.get(pk=1)
+    &lt;Question: What&apos;s up?&gt;
+
+
+&gt;&gt;&gt; q =Question.objects.get(pk=1)
+&gt;&gt;&gt; q.was_published_recently()
+
+    True
+&gt;&gt;&gt; q =Question.objects.get(pk=1)
+&gt;&gt;&gt; q.choice_set.all()
+    &lt;QuerySet []&gt;
+</code></pre>
+
+            <!-- Tags -->
+            
+
+
+<div class="tags">
+    
+</div>
+
+
+
+            <!-- Comments -->
+            <div>
+                
+
+
+            </div>
+        </div><!-- end content -->
+    </section>
+</section><!-- end main -->
+
+<!-- After footer scripts -->
+
+<!-- jQuery -->
+<script src="/js/jquery.js"></script>
+
+<!-- Custom Code -->
+<script src="/js/main.js"></script>
+
+<!-- Gallery -->
+
+
+<!-- Disqus Comments -->
+
+
+</body>
+
+</html>
