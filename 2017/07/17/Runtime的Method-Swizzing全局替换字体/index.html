@@ -10,6 +10,10 @@
 
     <!--Description-->
     
+        <meta name="description" content="之前公司换了UI设计，UI界面改动比较大，其中有个需求是字体全部修改成汉仪旗黑
+项目比较大，如果人工函数一个个修改的话，几乎不可能，顺着这个需求，想用runtime的swizzing，效果很好，也很简单，以下是代码实现
+创建UIFont分类，在load里替换掉 systemFontOfSize: 方">
+    
 
     <!--Author-->
     
@@ -17,6 +21,8 @@
     
 
     <!--Open Graph Title-->
+    
+        <meta property="og:title" content="Runtime的Method_Swizzing全局替换字体"/>
     
 
     <!--Open Graph Site Name-->
@@ -29,7 +35,7 @@
 
     <!-- Title -->
     
-    <title>归档：2016/2 - HOMOSUM HOUSH</title>
+    <title>Runtime的Method_Swizzing全局替换字体 - HOMOSUM HOUSH</title>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/reset.css">
@@ -106,85 +112,78 @@
 </header><!-- end header -->
 
 <!-- Main Content -->
-
-
 <section class="main clearfix">
-    <section class="wrapper">
-        <div class="content archives">
+
+    <section class="top" style="background: url('/img/saysomething1.jpg');">
+        <div class="wrapper content_header clearfix">
             
-            <ul class="archive-list">
+
+<div class="work_nav">
+
+    <ul class="btn clearfix">
+        
+        <li><a class="previous disabled"></a></li>
+        
+        <li><a href="/" class="grid" data-title="Portfolio"></a></li>
+        
+        <li><a href="/2017/07/15/我最近/" class="next" data-title="我最近"></a></li>
+        
+    </ul>
+
+</div><!-- end work_nav -->
+            <h1 class="title">Runtime的Method_Swizzing全局替换字体</h1>
+        </div>
+    </section><!-- end top -->
+
+    <section class="wrapper">
+        <div class="content">
+
+            <!-- Gallery -->
+            
+
+            <!-- Content -->
+            <p>之前公司换了UI设计，UI界面改动比较大，其中有个需求是字体全部修改成汉仪旗黑</p>
+<p>项目比较大，如果人工函数一个个修改的话，几乎不可能，顺着这个需求，想用runtime的swizzing，效果很好，也很简单，以下是代码实现</p>
+<p>创建UIFont分类，在load里替换掉 <code>systemFontOfSize:</code> 方法</p>
+<pre><code>@implementation UIFont (changeFont)
++(void)load
+{
+[super load];
+static dispatch_once_t onceToken;//建立单例
+dispatch_once(&amp;onceToken, ^{
+Method oldMethod=class_getClassMethod([self class], @selector(systemFontOfSize:));//获取原始方法
+Method newMethod=class_getClassMethod([self class], @selector(__nickyfontchanger_hyqiheiFontOfSize:));//获取新方法
+method_exchangeImplementations(oldMethod, newMethod);//将旧方法用新方法替换
+});
+}
++(UIFont *)__nickyfontchanger_hyqiheiFontOfSize:(CGFloat)fontSize
+{
+UIFont *font = [UIFont fontWithName:@&quot;HYQiHei-55S.otf&quot; size:fontSize];//创建自定义font
+if (!font)return [self __nickyfontchanger_hyqiheiFontOfSize:fontSize];//因为发生了替换，这里的`__nickyfontchanger_hyqiheiFontOfSize:`相当于`systemFontOfSize:`，
+return font;
+}
+@end
+</code></pre>
+
+            <!-- Tags -->
+            
+
+
+<div class="tags">
+    
+</div>
+
+
+
+            <!-- Comments -->
+            <div>
                 
-                    <li>
-    <a href="/2017/03/16/CABasicAnimation动画详解/">CABasicAnimation动画详解</a>
-</li>
-                
-                    <li>
-    <a href="/2017/01/16/Django学习-一/">Django学习(一)</a>
-</li>
-                
-                    <li>
-    <a href="/2017/07/17/Runtime的Method-Swizzing全局替换字体/">Runtime的Method_Swizzing全局替换字体</a>
-</li>
-                
-                    <li>
-    <a href="/2016/01/08/Mac终端上的python自动补全脚本/">Mac终端上的python自动补全脚本</a>
-</li>
-                
-                    <li>
-    <a href="/2016/01/13/Objective-C轻松给类添加属性/">Objective-C轻松给类添加属性</a>
-</li>
-                
-                    <li>
-    <a href="/2016/01/16/Git指令记录-版本控制和多人开发/">Git指令记录(版本控制和多人开发)</a>
-</li>
-                
-                    <li>
-    <a href="/2016/10/25/pianyuyiyan/">偏隅呓言</a>
-</li>
-                
-                    <li>
-    <a href="/2015/09/04/welcome/">Welcome To Homosum's House</a>
-</li>
-                
-                    <li>
-    <a href="/2016/02/16/使用终端进行友盟错误分析/">使用终端进行友盟错误分析</a>
-</li>
-                
-                    <li>
-    <a href="/2015/09/07/saysomething/">Say Someting</a>
-</li>
-                
-                    <li>
-    <a href="/2015/12/16/下午两点四十七/">下午两点四十七</a>
-</li>
-                
-                    <li>
-    <a href="/2016/07/16/图片内存优化之调整压缩/">图片内存优化之调整压缩</a>
-</li>
-                
-                    <li>
-    <a href="/2017/05/13/记一次阿里的电话面试/">记一次阿里的电话面试</a>
-</li>
-                
-                    <li>
-    <a href="/2017/07/15/我最近/">我最近</a>
-</li>
-                
-                    <li>
-    <a href="/2017/06/15/每天呼吸着爱你的空气/">每天呼吸着爱你的空气</a>
-</li>
-                
-                    <li>
-    <a href="/2017/03/19/记一次帮学妹写简单csv脚本/">记一次帮学妹写简单csv脚本</a>
-</li>
-                
-            </ul>
+
+
+            </div>
         </div><!-- end content -->
     </section>
 </section><!-- end main -->
-
-
-
 
 <!-- After footer scripts -->
 
