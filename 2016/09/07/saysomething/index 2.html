@@ -10,9 +10,7 @@
 
     <!--Description-->
     
-        <meta name="description" content="之前公司换了UI设计，UI界面改动比较大，其中有个需求是字体全部修改成汉仪旗黑
-项目比较大，如果人工函数一个个修改的话，几乎不可能，顺着这个需求，想用runtime的swizzing，效果很好，也很简单，以下是代码实现
-创建UIFont分类，在load里替换掉 systemFontOfSize: 方">
+        <meta name="description" content="G20最后一晚 G20七天假期充分验证了家里不适合干活的真理,初来新的栖息地,也没有检测到附近合适coding的地儿,怀念那个只要出门就肯定有地方去的窝,可惜离公司太远,sad.明天就要上班兑现了,还有一堆活没做,然而我还在这里吐槽.电视剧里坏人临死前废话都特别多,大概就像我现在的这样.Whatev">
     
 
     <!--Author-->
@@ -22,7 +20,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Runtime的Method_Swizzing全局替换字体"/>
+        <meta property="og:title" content="Say Someting"/>
     
 
     <!--Open Graph Site Name-->
@@ -35,7 +33,7 @@
 
     <!-- Title -->
     
-    <title>Runtime的Method_Swizzing全局替换字体 - HOMOSUM HOUSH</title>
+    <title>Say Someting - HOMOSUM HOUSH</title>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/reset.css">
@@ -49,6 +47,7 @@
     <![endif]-->
 
     <!-- Gallery -->
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
 
     <!-- Google Analytics -->
     
@@ -122,16 +121,16 @@
 
     <ul class="btn clearfix">
         
-        <li><a href="/2018/12/11/杭州冬天某个傍晚/" class="previous" data-title="杭州冬天某个傍晚"></a></li>
+        <li><a href="/2016/10/25/pianyuyiyan/" class="previous" data-title="偏隅呓言"></a></li>
         
         <li><a href="/" class="grid" data-title="Portfolio"></a></li>
         
-        <li><a href="/2017/07/15/我最近/" class="next" data-title="我最近"></a></li>
+        <li><a href="/2016/09/04/welcome/" class="next" data-title="Welcome To Homosu..."></a></li>
         
     </ul>
 
 </div><!-- end work_nav -->
-            <h1 class="title">Runtime的Method_Swizzing全局替换字体</h1>
+            <h1 class="title">Say Someting</h1>
         </div>
     </section><!-- end top -->
 
@@ -142,31 +141,12 @@
             
 
             <!-- Content -->
-            <p>之前公司换了UI设计，UI界面改动比较大，其中有个需求是字体全部修改成汉仪旗黑</p>
-<p>项目比较大，如果人工函数一个个修改的话，几乎不可能，顺着这个需求，想用runtime的swizzing，效果很好，也很简单，以下是代码实现</p>
-<p>创建UIFont分类，在load里替换掉 <code>systemFontOfSize:</code> 方法</p>
-<pre><code>@implementation UIFont (changeFont)
-+(void)load
-{
-[super load];
-static dispatch_once_t onceToken;//建立单例
-dispatch_once(&amp;onceToken, ^{
-Method oldMethod=class_getClassMethod([self class], @selector(systemFontOfSize:));//获取原始方法
-Method newMethod=class_getClassMethod([self class], @selector(__nickyfontchanger_hyqiheiFontOfSize:));//获取新方法
-method_exchangeImplementations(oldMethod, newMethod);//将旧方法用新方法替换
-});
-}
-+(UIFont *)__nickyfontchanger_hyqiheiFontOfSize:(CGFloat)fontSize
-{
-UIFont *font = [UIFont fontWithName:@&quot;HYQiHei-55S.otf&quot; size:fontSize];//创建自定义font
-if (!font)return [self __nickyfontchanger_hyqiheiFontOfSize:fontSize];//因为发生了替换，这里的`__nickyfontchanger_hyqiheiFontOfSize:`相当于`systemFontOfSize:`，
-return font;
-}
-@end
-</code></pre><p><br><br><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=485068831&auto=1&height=66"><br></iframe> 
-
-
+            <!--Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).-->
+<h3 id="G20最后一晚"><a href="#G20最后一晚" class="headerlink" title="G20最后一晚"></a>G20最后一晚</h3><p> G20七天假期充分验证了家里不适合干活的真理,初来新的栖息地,也没有检测到附近合适coding的地儿,怀念那个只要出门就肯定有地方去的窝,可惜离公司太远,sad.明天就要上班兑现了,还有一堆活没做,然而我还在这里吐槽.电视剧里坏人临死前废话都特别多,大概就像我现在的这样.Whatever,deadline是第一生产力,好不好用今晚试试看咯!</p>
+<p> <img src="/img/hongniu.jpg" alt="红牛"></p>
+<p> 晚上一点还有老库的发布会,应该是看不成了,明天起来看新闻罢.</p>
+<h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><h4 id="可能扫不出来"><a href="#可能扫不出来" class="headerlink" title="可能扫不出来"></a>可能扫不出来</h4><p> <img src="/img/wechat.jpg" alt="微信扫一扫"></p>
+ <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=404276447&auto=1&height=66"><br> </iframe> 
 
 
             <!-- Tags -->
@@ -198,7 +178,7 @@ return font;
 <script src="/js/main.js"></script>
 
 <!-- Gallery -->
-
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- Disqus Comments -->
 

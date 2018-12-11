@@ -10,9 +10,11 @@
 
     <!--Description-->
     
-        <meta name="description" content="之前公司换了UI设计，UI界面改动比较大，其中有个需求是字体全部修改成汉仪旗黑
-项目比较大，如果人工函数一个个修改的话，几乎不可能，顺着这个需求，想用runtime的swizzing，效果很好，也很简单，以下是代码实现
-创建UIFont分类，在load里替换掉 systemFontOfSize: 方">
+        <meta name="description" content="技术iOS开发More info: 个人空间
+网页开发More info: 个人主页
+有趣More info: 好玩
+可以玩一个小时的纸片海豚
+联系可能扫不出来">
     
 
     <!--Author-->
@@ -22,7 +24,7 @@
 
     <!--Open Graph Title-->
     
-        <meta property="og:title" content="Runtime的Method_Swizzing全局替换字体"/>
+        <meta property="og:title" content="Welcome To Homosum&#39;s House"/>
     
 
     <!--Open Graph Site Name-->
@@ -35,7 +37,7 @@
 
     <!-- Title -->
     
-    <title>Runtime的Method_Swizzing全局替换字体 - HOMOSUM HOUSH</title>
+    <title>Welcome To Homosum&#39;s House - HOMOSUM HOUSH</title>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/css/reset.css">
@@ -49,6 +51,7 @@
     <![endif]-->
 
     <!-- Gallery -->
+    <link href="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.css" type="text/css" rel="stylesheet" />
 
     <!-- Google Analytics -->
     
@@ -114,7 +117,7 @@
 <!-- Main Content -->
 <section class="main clearfix">
 
-    <section class="top" style="background: url('/img/saysomething1.jpg');">
+    <section class="top" style="background: url('/img/welcome1.jpg');">
         <div class="wrapper content_header clearfix">
             
 
@@ -122,16 +125,16 @@
 
     <ul class="btn clearfix">
         
-        <li><a href="/2018/12/11/杭州冬天某个傍晚/" class="previous" data-title="杭州冬天某个傍晚"></a></li>
+        <li><a href="/2016/09/07/saysomething/" class="previous" data-title="Say Someting"></a></li>
         
         <li><a href="/" class="grid" data-title="Portfolio"></a></li>
         
-        <li><a href="/2017/07/15/我最近/" class="next" data-title="我最近"></a></li>
+        <li><a class="next disabled"></a></li>
         
     </ul>
 
 </div><!-- end work_nav -->
-            <h1 class="title">Runtime的Method_Swizzing全局替换字体</h1>
+            <h1 class="title">Welcome To Homosum's House</h1>
         </div>
     </section><!-- end top -->
 
@@ -142,31 +145,13 @@
             
 
             <!-- Content -->
-            <p>之前公司换了UI设计，UI界面改动比较大，其中有个需求是字体全部修改成汉仪旗黑</p>
-<p>项目比较大，如果人工函数一个个修改的话，几乎不可能，顺着这个需求，想用runtime的swizzing，效果很好，也很简单，以下是代码实现</p>
-<p>创建UIFont分类，在load里替换掉 <code>systemFontOfSize:</code> 方法</p>
-<pre><code>@implementation UIFont (changeFont)
-+(void)load
-{
-[super load];
-static dispatch_once_t onceToken;//建立单例
-dispatch_once(&amp;onceToken, ^{
-Method oldMethod=class_getClassMethod([self class], @selector(systemFontOfSize:));//获取原始方法
-Method newMethod=class_getClassMethod([self class], @selector(__nickyfontchanger_hyqiheiFontOfSize:));//获取新方法
-method_exchangeImplementations(oldMethod, newMethod);//将旧方法用新方法替换
-});
-}
-+(UIFont *)__nickyfontchanger_hyqiheiFontOfSize:(CGFloat)fontSize
-{
-UIFont *font = [UIFont fontWithName:@&quot;HYQiHei-55S.otf&quot; size:fontSize];//创建自定义font
-if (!font)return [self __nickyfontchanger_hyqiheiFontOfSize:fontSize];//因为发生了替换，这里的`__nickyfontchanger_hyqiheiFontOfSize:`相当于`systemFontOfSize:`，
-return font;
-}
-@end
-</code></pre><p><br><br><br></p>
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=485068831&auto=1&height=66"><br></iframe> 
-
-
+            <!--Welcome to [Hexo](https://hexo.io/)! This is your very first post. Check [documentation](https://hexo.io/docs/) for more info. If you get any problems when using Hexo, you can find the answer in [troubleshooting](https://hexo.io/docs/troubleshooting.html) or you can ask me on [GitHub](https://github.com/hexojs/hexo/issues).-->
+<h2 id="技术"><a href="#技术" class="headerlink" title="技术"></a>技术</h2><h3 id="iOS开发"><a href="#iOS开发" class="headerlink" title="iOS开发"></a>iOS开发</h3><p>More info: <a href="https://homosum.us">个人空间</a></p>
+<h3 id="网页开发"><a href="#网页开发" class="headerlink" title="网页开发"></a>网页开发</h3><p>More info: <a href="https://homosum.us">个人主页</a></p>
+<h3 id="有趣"><a href="#有趣" class="headerlink" title="有趣"></a>有趣</h3><p>More info: <a href="https://homosum.us">好玩</a></p>
+<p></p><p><a href="http://img3.house365.com/bbsuserpic/2013/07/12/137361986351dfc6970a88e.swf" target="_blank" rel="external">可以玩一个小时的纸片海豚</a></p><p></p>
+<h3 id="联系"><a href="#联系" class="headerlink" title="联系"></a>联系</h3><h4 id="可能扫不出来"><a href="#可能扫不出来" class="headerlink" title="可能扫不出来"></a>可能扫不出来</h4><p> <img src="/img/wechat.jpg" alt="微信扫一扫"></p>
+ <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=424995307&auto=1&height=66"><br> </iframe> 
 
 
             <!-- Tags -->
@@ -198,7 +183,7 @@ return font;
 <script src="/js/main.js"></script>
 
 <!-- Gallery -->
-
+<script src="//cdn.rawgit.com/noelboss/featherlight/1.3.5/release/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
 
 <!-- Disqus Comments -->
 
